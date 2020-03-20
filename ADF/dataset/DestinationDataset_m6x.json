@@ -1,0 +1,20 @@
+{
+	"name": "DestinationDataset_m6x",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dumarkovopenhackmdw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "fourthcoffee/rentals",
+				"fileSystem": "source-data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

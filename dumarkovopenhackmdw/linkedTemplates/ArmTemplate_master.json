@@ -1,0 +1,126 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dumarkovopenhackmdw"
+		},
+		"dumarkovopenhackmdw_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'dumarkovopenhackmdw'"
+		},
+		"fourthcoffee_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'fourthcoffee'"
+		},
+		"southridge_cloudsales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'southridge_cloudsales'"
+		},
+		"southridge_cloudstreaming_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'southridge_cloudstreaming'"
+		},
+		"southridge_southridge_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'southridge_southridge'"
+		},
+		"vanarsdelltd_onpremrentals_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'vanarsdelltd_onpremrentals'"
+		},
+		"vanarsdelltd_onpremrentals_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'vanarsdelltd_onpremrentals'"
+		},
+		"dumarkovopenhackmdw_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dumarkovopenhackmdw.dfs.core.windows.net"
+		},
+		"dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://dumarkovopenhackmdw.vault.azure.net/"
+		},
+		"fourthcoffee_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "c:\\Rentals"
+		},
+		"fourthcoffee_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
+		},
+		"vanarsdelltd_onpremrentals_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"dumarkovopenhackmdw_accountKey": {
+						"value": "[parameters('dumarkovopenhackmdw_accountKey')]"
+					},
+					"southridge_cloudsales_connectionString": {
+						"value": "[parameters('southridge_cloudsales_connectionString')]"
+					},
+					"southridge_cloudstreaming_connectionString": {
+						"value": "[parameters('southridge_cloudstreaming_connectionString')]"
+					},
+					"southridge_southridge_connectionString": {
+						"value": "[parameters('southridge_southridge_connectionString')]"
+					},
+					"fourthcoffee_password": {
+						"value": "[parameters('fourthcoffee_password')]"
+					},
+					"vanarsdelltd_onpremrentals_connectionString": {
+						"value": "[parameters('vanarsdelltd_onpremrentals_connectionString')]"
+					},
+					"vanarsdelltd_onpremrentals_password": {
+						"value": "[parameters('vanarsdelltd_onpremrentals_password')]"
+					},
+					"dumarkovopenhackmdw_properties_typeProperties_url": {
+						"value": "[parameters('dumarkovopenhackmdw_properties_typeProperties_url')]"
+					},
+					"dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl')]"
+					},
+					"fourthcoffee_properties_typeProperties_host": {
+						"value": "[parameters('fourthcoffee_properties_typeProperties_host')]"
+					},
+					"fourthcoffee_properties_typeProperties_userId": {
+						"value": "[parameters('fourthcoffee_properties_typeProperties_userId')]"
+					},
+					"vanarsdelltd_onpremrentals_properties_typeProperties_userName": {
+						"value": "[parameters('vanarsdelltd_onpremrentals_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dumarkovopenhackmdw"
+		},
+		"dumarkovopenhackmdw_accountKey": {
+			"value": ""
+		},
+		"fourthcoffee_password": {
+			"value": ""
+		},
+		"southridge_cloudsales_connectionString": {
+			"value": ""
+		},
+		"southridge_cloudstreaming_connectionString": {
+			"value": ""
+		},
+		"southridge_southridge_connectionString": {
+			"value": ""
+		},
+		"vanarsdelltd_onpremrentals_connectionString": {
+			"value": ""
+		},
+		"vanarsdelltd_onpremrentals_password": {
+			"value": ""
+		},
+		"dumarkovopenhackmdw_properties_typeProperties_url": {
+			"value": "https://dumarkovopenhackmdw.dfs.core.windows.net"
+		},
+		"dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://dumarkovopenhackmdw.vault.azure.net/"
+		},
+		"fourthcoffee_properties_typeProperties_host": {
+			"value": "c:\\Rentals"
+		},
+		"fourthcoffee_properties_typeProperties_userId": {
+			"value": "openhackadmin"
+		},
+		"vanarsdelltd_onpremrentals_properties_typeProperties_userName": {
+			"value": "openhackadmin"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"name": "DestinationDataset_0qj",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dumarkovopenhackmdw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "movies.parquet",
+				"folderPath": "southridge/southridge",
+				"fileSystem": "source-data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

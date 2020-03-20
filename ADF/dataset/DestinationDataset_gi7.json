@@ -1,0 +1,30 @@
+{
+	"name": "DestinationDataset_gi7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dumarkovopenhackmdw",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_fileName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().cw_fileName",
+					"type": "Expression"
+				},
+				"folderPath": "southridge/cloudsales/dbo",
+				"fileSystem": "source-data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

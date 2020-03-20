@@ -1,0 +1,30 @@
+{
+	"name": "DestinationDataset_r1e",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dumarkovopenhackmdw",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"cw_fileName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().cw_fileName",
+					"type": "Expression"
+				},
+				"folderPath": "southridge/cloudstreaming/dbo",
+				"fileSystem": "source-data"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

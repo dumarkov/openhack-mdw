@@ -5,9 +5,9 @@
 		"annotations": [],
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "c:\\Rentals",
+			"host": "c:\\",
 			"userId": "openhackadmin",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ZGVkNzNiOC0xNjhkLTQ5M2QtOGNmNS1lMTkyYzdkZDYyNWIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0NTQ2NzllYy04NjA5LTQwYmUtYmZjYi1mYmZiZDcyYjEzY2MiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "FourthCoffee",

@@ -1,0 +1,17 @@
+{
+	"name": "vanarsdelltd_onpremrentals",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=True;data source=localhost;initial catalog=OnPremRentals",
+			"userName": "openhackadmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4NTI2NTY4My00ZWIwLTRlYjUtODYyNS0wYjUyMjJjMmRiZDAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "VanArsdelLtd",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"name": "dumarkovopenhackmdw_keyvault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://dumarkovopenhackmdw.vault.azure.net/"
+		}
+	}
+}

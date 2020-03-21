@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_6zi",
+	"name": "dst_adls_dumarkovopenhackmdw_vanarsdelltd_onpremrentals",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

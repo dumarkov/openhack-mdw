@@ -57,7 +57,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DestinationDataset_6zi",
+									"referenceName": "dst_adls_dumarkovopenhackmdw_vanarsdelltd_onpremrentals",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_fileName": "@item().destination.fileName"

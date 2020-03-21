@@ -52,7 +52,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_m6x",
+						"referenceName": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals",
 						"type": "DatasetReference"
 					}
 				]

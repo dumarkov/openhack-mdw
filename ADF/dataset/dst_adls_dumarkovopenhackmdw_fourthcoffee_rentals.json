@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_m6x",
+	"name": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

@@ -48,7 +48,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceDataset_6zi",
+									"referenceName": "src_sql_server_vanarsdelltd_onpremrentals",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_table": "@item().source.table"

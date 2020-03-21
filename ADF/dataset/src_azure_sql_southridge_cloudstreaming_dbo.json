@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_r1e",
+	"name": "src_azure_sql_southridge_cloudstreaming_dbo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "southridge_cloudstreaming",

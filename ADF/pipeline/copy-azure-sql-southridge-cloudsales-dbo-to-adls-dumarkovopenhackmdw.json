@@ -48,7 +48,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceDataset_gi7",
+									"referenceName": "src_azure_sql_southridge_cloudsales_dbo",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_table": "@item().source.table"

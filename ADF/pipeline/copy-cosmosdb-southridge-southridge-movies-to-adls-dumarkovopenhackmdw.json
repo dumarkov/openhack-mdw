@@ -180,7 +180,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_0qj",
+						"referenceName": "src_cosmosdb_southridge_southridge_movies",
 						"type": "DatasetReference"
 					}
 				],

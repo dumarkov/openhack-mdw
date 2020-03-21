@@ -48,7 +48,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SourceDataset_r1e",
+									"referenceName": "src_azure_sql_southridge_cloudstreaming_dbo",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_table": "@item().source.table"

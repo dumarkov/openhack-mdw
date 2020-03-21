@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_6zi",
+	"name": "src_sql_server_vanarsdelltd_onpremrentals",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "vanarsdelltd_onpremrentals",

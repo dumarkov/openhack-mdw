@@ -1,0 +1,17 @@
+{
+	"name": "src_file_system_fourthcoffee_rentals_bin_bin",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "fourthcoffee",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"folderPath": "Rentals"
+			}
+		}
+	}
+}

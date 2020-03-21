@@ -1,0 +1,18 @@
+{
+	"name": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_bin",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dumarkovopenhackmdw",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "fourthcoffee/rentals",
+				"fileSystem": "source-data"
+			}
+		}
+	}
+}

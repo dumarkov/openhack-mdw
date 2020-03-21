@@ -1,5 +1,5 @@
 {
-	"name": "src_file_system_fourthcoffee_rentals",
+	"name": "src_file_system_fourthcoffee_rentals_bin",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "fourthcoffee",

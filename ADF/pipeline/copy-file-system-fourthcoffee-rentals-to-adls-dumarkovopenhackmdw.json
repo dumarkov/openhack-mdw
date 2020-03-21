@@ -25,19 +25,14 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
+						"type": "BinarySource",
 						"storeSettings": {
 							"type": "FileServerReadSettings",
-							"recursive": false,
-							"wildcardFileName": "*"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings",
-							"skipLineCount": 0
+							"recursive": false
 						}
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "BinarySink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						}
@@ -46,13 +41,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "src_file_system_fourthcoffee_rentals",
+						"referenceName": "src_file_system_fourthcoffee_rentals_bin_bin",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals",
+						"referenceName": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_bin",
 						"type": "DatasetReference"
 					}
 				]

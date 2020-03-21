@@ -41,13 +41,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "src_file_system_fourthcoffee_rentals_bin_bin",
+						"referenceName": "src_file_system_fourthcoffee_rentals_binary",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_bin",
+						"referenceName": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_binary",
 						"type": "DatasetReference"
 					}
 				]

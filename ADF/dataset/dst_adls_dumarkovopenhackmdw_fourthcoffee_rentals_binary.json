@@ -1,5 +1,5 @@
 {
-	"name": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_bin",
+	"name": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_binary",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

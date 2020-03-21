@@ -1,5 +1,5 @@
 {
-	"name": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals",
+	"name": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

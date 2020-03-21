@@ -186,7 +186,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_0qj",
+						"referenceName": "dst_adls_dumarkovopenhackmdw_southridge_southridge_movies",
 						"type": "DatasetReference"
 					}
 				]

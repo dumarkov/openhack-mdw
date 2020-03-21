@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_0qj",
+	"name": "dst_adls_dumarkovopenhackmdw_southridge_southridge_movies",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_gi7",
+	"name": "dst_adls_dumarkovopenhackmdw_southridge_cloudsales_dbo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

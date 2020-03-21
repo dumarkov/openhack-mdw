@@ -57,7 +57,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DestinationDataset_gi7",
+									"referenceName": "dst_adls_dumarkovopenhackmdw_southridge_cloudsales_dbo",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_fileName": "@item().destination.fileName"

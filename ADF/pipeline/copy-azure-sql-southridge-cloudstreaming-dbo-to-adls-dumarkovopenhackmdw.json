@@ -57,7 +57,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DestinationDataset_r1e",
+									"referenceName": "dst_adls_dumarkovopenhackmdw_southridge_cloudstreaming_dbo",
 									"type": "DatasetReference",
 									"parameters": {
 										"cw_fileName": "@item().destination.fileName"

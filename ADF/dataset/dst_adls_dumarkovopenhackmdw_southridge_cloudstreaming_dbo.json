@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_r1e",
+	"name": "dst_adls_dumarkovopenhackmdw_southridge_cloudstreaming_dbo",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "dumarkovopenhackmdw",

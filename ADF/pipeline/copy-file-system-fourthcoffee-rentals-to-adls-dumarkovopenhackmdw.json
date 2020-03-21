@@ -46,7 +46,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_m6x",
+						"referenceName": "src_file_system_fourthcoffee_rentals",
 						"type": "DatasetReference"
 					}
 				],

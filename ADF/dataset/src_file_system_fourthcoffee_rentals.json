@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_m6x",
+	"name": "src_file_system_fourthcoffee_rentals",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "fourthcoffee",

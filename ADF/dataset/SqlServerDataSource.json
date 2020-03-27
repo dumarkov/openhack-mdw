@@ -1,0 +1,17 @@
+{
+	"name": "SqlServerDataSource",
+	"properties": {
+		"description": "Connection to your source data store.",
+		"linkedServiceName": {
+			"referenceName": "vanarsdelltd_onpremrentals",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DataSourceTable"
+		}
+	}
+}

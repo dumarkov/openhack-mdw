@@ -1,5 +1,5 @@
 {
-	"name": "incremental_cloudstreaming_transactions_to_adls",
+	"name": "incremental_vanardelltd_transactions_to_adls",
 	"properties": {
 		"description": "Copy new or updated rows only from database using external control table",
 		"activities": [
@@ -23,7 +23,7 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "AzureSqlDatabaseExternal_ControlTable1",
+						"referenceName": "SqlServerExternal_ControlTable",
 						"type": "DatasetReference"
 					}
 				}
@@ -48,7 +48,7 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "AzureSqlDatabaseDataSource1",
+						"referenceName": "SqlServerDataSource",
 						"type": "DatasetReference"
 					}
 				}
@@ -93,13 +93,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AzureSqlDatabaseDataSource1",
+						"referenceName": "SqlServerDataSource",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DataDestination1",
+						"referenceName": "DataDestination2",
 						"type": "DatasetReference",
 						"parameters": {
 							"Data_Destination_Container": {
@@ -145,7 +145,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "southridge_cloudstreaming",
+					"referenceName": "vanarsdelltd_onpremrentals",
 					"type": "LinkedServiceReference"
 				}
 			}
@@ -161,11 +161,11 @@
 			},
 			"Data_Destination_Container": {
 				"type": "String",
-				"defaultValue": "source_data"
+				"defaultValue": "source-data"
 			},
 			"Data_Destination_Directory": {
 				"type": "String",
-				"defaultValue": "southridge/cloudstreaming/dbo"
+				"defaultValue": "vanarsdelltd/onpremrentals/dbo"
 			},
 			"Control_Table_Table_Name": {
 				"type": "String",

@@ -6,78 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "dumarkovopenhackmdw"
-		},
-		"dumarkovopenhackmdw_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'dumarkovopenhackmdw'"
-		},
-		"fourthcoffee_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'fourthcoffee'"
-		},
-		"southridge_cloudsales_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'southridge_cloudsales'"
-		},
-		"southridge_cloudstreaming_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'southridge_cloudstreaming'"
-		},
-		"southridge_southridge_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'southridge_southridge'"
-		},
-		"vanarsdelltd_onpremrentals_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'vanarsdelltd_onpremrentals'"
-		},
-		"vanarsdelltd_onpremrentals_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'vanarsdelltd_onpremrentals'"
-		},
-		"dumarkovopenhackmdw_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://dumarkovopenhackmdw.dfs.core.windows.net"
-		},
-		"dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://dumarkovopenhackmdw.vault.azure.net/"
-		},
-		"fourthcoffee_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "c:\\"
-		},
-		"fourthcoffee_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "openhackadmin"
-		},
-		"vanarsdelltd_onpremrentals_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "openhackadmin"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Source_Table_Name": {
-			"type": "string",
-			"defaultValue": "dbo.orders"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Source_WaterMarkColumn": {
-			"type": "string",
-			"defaultValue": "CreatedDate"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Destination_Container": {
-			"type": "string",
-			"defaultValue": "source-data"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Destination_Directory": {
-			"type": "string",
-			"defaultValue": "southridge/cloudsales/dbo/"
-		},
-		"daily_midnight_properties_pipeline_parameters_Control_Table_Table_Name": {
-			"type": "string",
-			"defaultValue": "control_table_orders"
-		},
-		"daily_midnight_properties_pipeline_parameters_Control_Table_Column_Name": {
-			"type": "string",
-			"defaultValue": "wm"
 		}
 	},
 	"variables": {
@@ -112,8 +40,7 @@
 							},
 							"dataset": {
 								"referenceName": "AzureSqlDatabaseExternal_ControlTable",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						}
 					},
@@ -138,8 +65,7 @@
 							},
 							"dataset": {
 								"referenceName": "AzureSqlDatabaseDataSource",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						}
 					},
@@ -184,8 +110,7 @@
 						"inputs": [
 							{
 								"referenceName": "AzureSqlDatabaseDataSource",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
@@ -272,8 +197,7 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AzureSqlDatabaseExternal_ControlTable')]",
 				"[concat(variables('factoryId'), '/datasets/AzureSqlDatabaseDataSource')]",
-				"[concat(variables('factoryId'), '/datasets/DataDestination')]",
-				"[concat(variables('factoryId'), '/linkedServices/southridge_cloudsales')]"
+				"[concat(variables('factoryId'), '/datasets/DataDestination')]"
 			]
 		},
 		{
@@ -697,15 +621,13 @@
 						"inputs": [
 							{
 								"referenceName": "src_cosmosdb_southridge_southridge_movies",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "dst_adls_dumarkovopenhackmdw_southridge_southridge_movies",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -766,15 +688,13 @@
 						"inputs": [
 							{
 								"referenceName": "src_file_system_fourthcoffee_rentals_binary",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_binary",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -945,9 +865,7 @@
 					"table": "DataSourceTable"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/southridge_cloudsales')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabaseExternal_ControlTable')]",
@@ -967,9 +885,7 @@
 					"table": "watermarktable"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/southridge_cloudsales')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DataDestination')]",
@@ -1010,9 +926,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_binary')]",
@@ -1033,9 +947,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_fourthcoffee_rentals_parquet')]",
@@ -1071,9 +983,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_southridge_cloudsales_dbo')]",
@@ -1105,9 +1015,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_southridge_cloudstreaming_dbo')]",
@@ -1139,9 +1047,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_southridge_southridge_movies')]",
@@ -1165,9 +1071,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_vanarsdelltd_onpremrentals')]",
@@ -1199,9 +1103,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/dumarkovopenhackmdw')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/src_azure_sql_southridge_cloudsales_dbo')]",
@@ -1228,9 +1130,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/southridge_cloudsales')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/src_azure_sql_southridge_cloudstreaming_dbo')]",
@@ -1257,9 +1157,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/southridge_cloudstreaming')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/src_cosmosdb_southridge_southridge_movies')]",
@@ -1334,9 +1232,7 @@
 					"collectionName": "movies"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/southridge_southridge')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/src_file_system_fourthcoffee_rentals_binary')]",
@@ -1425,38 +1321,6 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/vanarsdelltd_onpremrentals')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dumarkovopenhackmdw')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('dumarkovopenhackmdw_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('dumarkovopenhackmdw_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dumarkovopenhackmdw_keyvault')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl')]"
-				}
-			},
 			"dependsOn": []
 		},
 		{
@@ -1467,11 +1331,11 @@
 				"annotations": [],
 				"type": "FileServer",
 				"typeProperties": {
-					"host": "[parameters('fourthcoffee_properties_typeProperties_host')]",
-					"userId": "[parameters('fourthcoffee_properties_typeProperties_userId')]",
+					"host": "c:\\",
+					"userId": "openhackadmin",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('fourthcoffee_password')]"
+						"value": "**********"
 					}
 				},
 				"connectVia": {
@@ -1479,72 +1343,7 @@
 					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/FourthCoffee')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/southridge_cloudsales')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('southridge_cloudsales_connectionString')]"
-				}
-			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/southridge_cloudstreaming')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('southridge_cloudstreaming_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/southridge_southridge')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('southridge_southridge_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/vanarsdelltd_onpremrentals')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('vanarsdelltd_onpremrentals_connectionString')]",
-					"userName": "[parameters('vanarsdelltd_onpremrentals_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('vanarsdelltd_onpremrentals_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "VanArsdelLtd",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/VanArsdelLtd')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/daily_midnight')]",
@@ -1559,12 +1358,12 @@
 						"type": "PipelineReference"
 					},
 					"parameters": {
-						"Data_Source_Table_Name": "[parameters('daily_midnight_properties_pipeline_parameters_Data_Source_Table_Name')]",
-						"Data_Source_WaterMarkColumn": "[parameters('daily_midnight_properties_pipeline_parameters_Data_Source_WaterMarkColumn')]",
-						"Data_Destination_Container": "[parameters('daily_midnight_properties_pipeline_parameters_Data_Destination_Container')]",
-						"Data_Destination_Directory": "[parameters('daily_midnight_properties_pipeline_parameters_Data_Destination_Directory')]",
-						"Control_Table_Table_Name": "[parameters('daily_midnight_properties_pipeline_parameters_Control_Table_Table_Name')]",
-						"Control_Table_Column_Name": "[parameters('daily_midnight_properties_pipeline_parameters_Control_Table_Column_Name')]"
+						"Data_Source_Table_Name": "dbo.orders",
+						"Data_Source_WaterMarkColumn": "CreatedDate",
+						"Data_Destination_Container": "source-data",
+						"Data_Destination_Directory": "southridge/cloudsales/dbo/",
+						"Control_Table_Table_Name": "control_table_orders",
+						"Control_Table_Column_Name": "wm"
 					}
 				},
 				"type": "TumblingWindowTrigger",
@@ -1583,26 +1382,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/DeltaCopyfromDB_using_ControlTable')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FourthCoffee')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/VanArsdelLtd')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
 		}
 	]
 }

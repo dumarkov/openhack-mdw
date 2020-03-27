@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDatabaseDataSource1",
+	"properties": {
+		"description": "Connection to your source data store.",
+		"linkedServiceName": {
+			"referenceName": "southridge_cloudstreaming",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DataSourceTable"
+		}
+	}
+}

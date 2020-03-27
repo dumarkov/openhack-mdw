@@ -876,7 +876,7 @@
 						}
 					},
 					{
-						"name": "Stored Procedure1",
+						"name": "log copy output",
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{

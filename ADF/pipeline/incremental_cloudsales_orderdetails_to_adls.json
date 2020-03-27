@@ -86,7 +86,15 @@
 						}
 					},
 					"sink": {
-						"type": "DelimitedTextSink"
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
 					"enableStaging": false,
 					"dataIntegrationUnits": 0
@@ -141,6 +149,59 @@
 								"type": "Expression"
 							},
 							"type": "datetime"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "southridge_cloudsales",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Stored Procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "DeltaCopyfromDB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[log_metrics]",
+					"storedProcedureParameters": {
+						"dataRead": {
+							"value": "@activity('DeltaCopyfromDB').output.dataRead",
+							"type": "Int32"
+						},
+						"dataWritten": {
+							"value": "@activity('DeltaCopyfromDB').output.dataWritten",
+							"type": "Int32"
+						},
+						"filesWritten": {
+							"value": "@activity('DeltaCopyfromDB').output.filesWritten",
+							"type": "Int32"
+						},
+						"rowsRead": {
+							"value": "@activity('DeltaCopyfromDB').output.rowsRead",
+							"type": "Int32"
+						},
+						"rowsCopied": {
+							"value": "@activity('DeltaCopyfromDB').output.rowsCopied",
+							"type": "Int32"
+						},
+						"copyDuration": {
+							"value": "@activity('DeltaCopyfromDB').output.copyDuration",
+							"type": "Int32"
 						}
 					}
 				},

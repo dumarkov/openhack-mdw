@@ -41,24 +41,6 @@
 		"vanarsdelltd_onpremrentals_properties_typeProperties_userName": {
 			"value": "openhackadmin"
 		},
-		"daily_midnight_properties_pipeline_parameters_Data_Source_Table_Name": {
-			"value": "dbo.orders"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Source_WaterMarkColumn": {
-			"value": "CreatedDate"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Destination_Container": {
-			"value": "source-data"
-		},
-		"daily_midnight_properties_pipeline_parameters_Data_Destination_Directory": {
-			"value": "southridge/cloudsales/dbo/"
-		},
-		"daily_midnight_properties_pipeline_parameters_Control_Table_Table_Name": {
-			"value": "control_table_orders"
-		},
-		"daily_midnight_properties_pipeline_parameters_Control_Table_Column_Name": {
-			"value": "wm"
-		},
 		"containerUri": {
 			"value": ""
 		},

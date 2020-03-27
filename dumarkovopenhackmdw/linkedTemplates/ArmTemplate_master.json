@@ -94,20 +94,11 @@
 					"southridge_southridge_connectionString": {
 						"value": "[parameters('southridge_southridge_connectionString')]"
 					},
-					"fourthcoffee_password": {
-						"value": "[parameters('fourthcoffee_password')]"
-					},
 					"dumarkovopenhackmdw_properties_typeProperties_url": {
 						"value": "[parameters('dumarkovopenhackmdw_properties_typeProperties_url')]"
 					},
 					"dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl": {
 						"value": "[parameters('dumarkovopenhackmdw_keyvault_properties_typeProperties_baseUrl')]"
-					},
-					"fourthcoffee_properties_typeProperties_host": {
-						"value": "[parameters('fourthcoffee_properties_typeProperties_host')]"
-					},
-					"fourthcoffee_properties_typeProperties_userId": {
-						"value": "[parameters('fourthcoffee_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -127,11 +118,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"fourthcoffee_password": {
+						"value": "[parameters('fourthcoffee_password')]"
+					},
 					"vanarsdelltd_onpremrentals_connectionString": {
 						"value": "[parameters('vanarsdelltd_onpremrentals_connectionString')]"
 					},
 					"vanarsdelltd_onpremrentals_password": {
 						"value": "[parameters('vanarsdelltd_onpremrentals_password')]"
+					},
+					"fourthcoffee_properties_typeProperties_host": {
+						"value": "[parameters('fourthcoffee_properties_typeProperties_host')]"
+					},
+					"fourthcoffee_properties_typeProperties_userId": {
+						"value": "[parameters('fourthcoffee_properties_typeProperties_userId')]"
 					},
 					"vanarsdelltd_onpremrentals_properties_typeProperties_userName": {
 						"value": "[parameters('vanarsdelltd_onpremrentals_properties_typeProperties_userName')]"

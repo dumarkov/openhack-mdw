@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlDatabaseExternal_ControlTable",
+	"properties": {
+		"description": "External control table to store high water mark value.",
+		"linkedServiceName": {
+			"referenceName": "southridge_cloudsales",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "watermarktable"
+		}
+	}
+}

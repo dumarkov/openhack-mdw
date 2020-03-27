@@ -124,6 +124,9 @@
 				]
 			}
 		},
+		"folder": {
+			"name": "Initial Load"
+		},
 		"annotations": []
 	}
 }

@@ -192,6 +192,9 @@
 				]
 			}
 		],
+		"folder": {
+			"name": "Initial Load"
+		},
 		"annotations": []
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"

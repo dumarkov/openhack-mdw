@@ -202,6 +202,50 @@
 						"copyDuration": {
 							"value": "@activity('DeltaCopyfromDB').output.copyDuration",
 							"type": "Int32"
+						},
+						"DataFactory": {
+							"value": "@pipeline().DataFactory",
+							"type": "String"
+						},
+						"Pipeline": {
+							"value": "@pipeline().Pipeline",
+							"type": "String"
+						},
+						"RunId": {
+							"value": "@pipeline().RunId",
+							"type": "Guid"
+						},
+						"TriggerType": {
+							"value": "@pipeline().TriggerType",
+							"type": "String"
+						},
+						"TriggerId": {
+							"value": "@pipeline().TriggerId",
+							"type": "Guid"
+						},
+						"TriggerName": {
+							"value": "@pipeline().TriggerName",
+							"type": "String"
+						},
+						"TriggerTime": {
+							"value": "@pipeline().TriggerTime",
+							"type": "Datetime"
+						},
+						"scheduledTime": {
+							"value": "@trigger().scheduledTime",
+							"type": "Datetime"
+						},
+						"startTime": {
+							"value": "@trigger().startTime",
+							"type": "Datetime"
+						},
+						"windowStartTime": {
+							"value": "@trigger().outputs.windowStartTime",
+							"type": "Datetime"
+						},
+						"windowEndTime": {
+							"value": "@trigger().outputs.windowEndTime",
+							"type": "Datetime"
 						}
 					}
 				},

@@ -177,7 +177,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[log_metrics]",
+					"storedProcedureName": "[dbo].[log_adf_metrics]",
 					"storedProcedureParameters": {
 						"dataRead": {
 							"value": "@activity('DeltaCopyfromDB').output.dataRead",

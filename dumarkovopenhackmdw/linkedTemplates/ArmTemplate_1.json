@@ -37,6 +37,65 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/dst_adls_dumarkovopenhackmdw_vanarsdelltd_onpremrentals')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "dumarkovopenhackmdw",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_fileName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().cw_fileName",
+							"type": "Expression"
+						},
+						"folderPath": "vanarsdelltd/onpremrentals/dbo",
+						"fileSystem": "source-data"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/src_azure_sql_southridge_cloudsales_dbo')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "southridge_cloudsales",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"cw_table": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": {
+						"value": "@dataset().cw_table",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/src_azure_sql_southridge_cloudstreaming_dbo')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -183,83 +242,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DataDestination2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Connection to your destination data store.",
-				"linkedServiceName": {
-					"referenceName": "dumarkovopenhackmdw",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"Data_Destination_Container": {
-						"type": "String"
-					},
-					"Data_Destination_Directory": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@{dataset().Data_Destination_Directory}",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@{dataset().Data_Destination_Container}",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BinaryDataDestinationStore')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Connection to your data destination store.  ",
-				"linkedServiceName": {
-					"referenceName": "dumarkovopenhackmdw",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"Container": {
-						"type": "string"
-					},
-					"Directory": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@dataset().Directory",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().Container",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/copy-azure-sql-southridge-cloudsales-dbo-to-adls-dumarkovopenhackmdw')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -376,7 +358,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/src_azure_sql_southridge_cloudsales_dbo')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/copy-azure-sql-southridge-cloudstreaming-dbo-to-adls-dumarkovopenhackmdw')]",
@@ -885,27 +869,45 @@
 							"storedProcedureName": "[[dbo].[log_metrics]",
 							"storedProcedureParameters": {
 								"dataRead": {
-									"value": "@activity('DeltaCopyfromDB').output.dataRead",
+									"value": {
+										"value": "@activity('DeltaCopyfromDB').output.dataRead",
+										"type": "Expression"
+									},
 									"type": "Int32"
 								},
 								"dataWritten": {
-									"value": "@activity('DeltaCopyfromDB').output.dataWritten",
+									"value": {
+										"value": "@activity('DeltaCopyfromDB').output.dataWritten",
+										"type": "Expression"
+									},
 									"type": "Int32"
 								},
 								"filesWritten": {
-									"value": "@activity('DeltaCopyfromDB').output.filesWritten",
+									"value": {
+										"value": "@activity('DeltaCopyfromDB').output.filesWritten",
+										"type": "Expression"
+									},
 									"type": "Int32"
 								},
 								"rowsRead": {
-									"value": "@activity('DeltaCopyfromDB').output.rowsRead",
+									"value": {
+										"value": "@activity('DeltaCopyfromDB').output.rowsRead",
+										"type": "Expression"
+									},
 									"type": "Int32"
 								},
 								"rowsCopied": {
-									"value": "@activity('DeltaCopyfromDB').output.rowsCopied",
+									"value": {
+										"value": "@activity('DeltaCopyfromDB').output.rowsCopied",
+										"type": "Expression"
+									},
 									"type": "Int32"
 								},
 								"copyDuration": {
-									"value": "@activity('DeltaCopyfromDB').output.copyDuration",
+									"value": {
+										"value": "@activity('DeltaCopyfromDB').output.copyDuration",
+										"type": "Expression"
+									},
 									"type": "Int32"
 								}
 							}
@@ -1136,15 +1138,24 @@
 							"storedProcedureName": "[[dbo].[log_adf_metrics]",
 							"storedProcedureParameters": {
 								"adf_activity": {
-									"value": "@activity('DeltaCopyfromDB').output",
+									"value": {
+										"value": "@string(activity('DeltaCopyfromDB').output)",
+										"type": "Expression"
+									},
 									"type": "String"
 								},
 								"adf_pipeline": {
-									"value": "@pipeline()",
+									"value": {
+										"value": "@string(pipeline())",
+										"type": "Expression"
+									},
 									"type": "String"
 								},
 								"adf_trigger": {
-									"value": "@trigger()",
+									"value": {
+										"value": "@string(trigger())",
+										"type": "Expression"
+									},
 									"type": "String"
 								}
 							}
@@ -1379,6 +1390,84 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/BinaryDataSourceStore')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to your data source store. ",
+				"linkedServiceName": {
+					"referenceName": "fourthcoffee",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FolderPath": {
+						"type": "string"
+					},
+					"Directory": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"folderPath": {
+							"value": "@concat(dataset().FolderPath,'/',dataset().Directory)",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/fourthcoffee')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerDataSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connection to your source data store.",
+				"linkedServiceName": {
+					"referenceName": "vanarsdelltd_onpremrentals",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "DataSourceTable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/vanarsdelltd_onpremrentals')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerExternal_ControlTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "External control table to store high water mark value.",
+				"linkedServiceName": {
+					"referenceName": "vanarsdelltd_onpremrentals",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "watermarktable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/vanarsdelltd_onpremrentals')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/src_file_system_fourthcoffee_rentals_binary')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1467,84 +1556,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/vanarsdelltd_onpremrentals')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SqlServerDataSource')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Connection to your source data store.",
-				"linkedServiceName": {
-					"referenceName": "vanarsdelltd_onpremrentals",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "DataSourceTable"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/vanarsdelltd_onpremrentals')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SqlServerExternal_ControlTable')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "External control table to store high water mark value.",
-				"linkedServiceName": {
-					"referenceName": "vanarsdelltd_onpremrentals",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "watermarktable"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/vanarsdelltd_onpremrentals')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BinaryDataSourceStore')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Connection to your data source store. ",
-				"linkedServiceName": {
-					"referenceName": "fourthcoffee",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"FolderPath": {
-						"type": "string"
-					},
-					"Directory": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "FileServerLocation",
-						"folderPath": {
-							"value": "@concat(dataset().FolderPath,'/',dataset().Directory)",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/fourthcoffee')]"
 			]
 		},
 		{
@@ -1749,7 +1760,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/src_sql_server_vanarsdelltd_onpremrentals')]"
+				"[concat(variables('factoryId'), '/datasets/src_sql_server_vanarsdelltd_onpremrentals')]",
+				"[concat(variables('factoryId'), '/datasets/dst_adls_dumarkovopenhackmdw_vanarsdelltd_onpremrentals')]"
 			]
 		}
 	]

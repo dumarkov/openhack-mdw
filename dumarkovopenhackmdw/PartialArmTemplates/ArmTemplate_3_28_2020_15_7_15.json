@@ -13,122 +13,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/incremental_forthcoffee_transactions_to_adls')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Copy new and changed files only by using LastModifiedDate",
-				"activities": [
-					{
-						"name": "CopyNewFiles",
-						"description": "Copy new and changed files only by using LastModifiedDate",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "FileServerReadSettings",
-									"recursive": true,
-									"modifiedDatetimeStart": {
-										"value": "@{pipeline().parameters.LastModified_From}",
-										"type": "Expression"
-									},
-									"modifiedDatetimeEnd": {
-										"value": "@{pipeline().parameters.LastModified_To}",
-										"type": "Expression"
-									},
-									"wildcardFileName": {
-										"value": "*",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "BinaryDataSourceStore",
-								"type": "DatasetReference",
-								"parameters": {
-									"FolderPath": {
-										"value": "@pipeline().parameters.FolderPath_Source",
-										"type": "Expression"
-									},
-									"Directory": {
-										"value": "@pipeline().parameters.Directory_Source",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "BinaryDataDestinationStore",
-								"type": "DatasetReference",
-								"parameters": {
-									"Container": {
-										"value": "@pipeline().parameters.FolderPath_Destination",
-										"type": "Expression"
-									},
-									"Directory": {
-										"value": "@pipeline().parameters.Directory_Destination",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					}
-				],
-				"parameters": {
-					"FolderPath_Source": {
-						"type": "String",
-						"defaultValue": "C:\\"
-					},
-					"Directory_Source": {
-						"type": "String",
-						"defaultValue": "Transactions_2018"
-					},
-					"FolderPath_Destination": {
-						"type": "String",
-						"defaultValue": "source-data"
-					},
-					"Directory_Destination": {
-						"type": "String",
-						"defaultValue": "fourthcoffee/rentals"
-					},
-					"LastModified_From": {
-						"type": "String",
-						"defaultValue": "2019-02-01T00:00:00Z"
-					},
-					"LastModified_To": {
-						"type": "String",
-						"defaultValue": "2019-03-01T00:00:00Z"
-					}
-				},
-				"folder": {
-					"name": "Incremental Load"
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/incremental_vanardelltd_transactions_to_adls')]",
+			"name": "[concat(parameters('factoryName'), '/incremental_cloudsales_orders_to_adls')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -154,9 +39,8 @@
 								}
 							},
 							"dataset": {
-								"referenceName": "SqlServerExternal_ControlTable",
-								"type": "DatasetReference",
-								"parameters": {}
+								"referenceName": "AzureSqlDatabaseExternal_ControlTable",
+								"type": "DatasetReference"
 							}
 						}
 					},
@@ -180,9 +64,8 @@
 								}
 							},
 							"dataset": {
-								"referenceName": "SqlServerDataSource",
-								"type": "DatasetReference",
-								"parameters": {}
+								"referenceName": "AzureSqlDatabaseDataSource",
+								"type": "DatasetReference"
 							}
 						}
 					},
@@ -219,21 +102,28 @@
 								}
 							},
 							"sink": {
-								"type": "DelimitedTextSink"
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
 							},
 							"enableStaging": false,
 							"dataIntegrationUnits": 0
 						},
 						"inputs": [
 							{
-								"referenceName": "SqlServerDataSource",
-								"type": "DatasetReference",
-								"parameters": {}
+								"referenceName": "AzureSqlDatabaseDataSource",
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "DataDestination2",
+								"referenceName": "DataDestination",
 								"type": "DatasetReference",
 								"parameters": {
 									"Data_Destination_Container": {
@@ -267,7 +157,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[dbo].[control_table_transactions_update]",
+							"storedProcedureName": "[[dbo].[control_table_orders_update]",
 							"storedProcedureParameters": {
 								"wm": {
 									"value": {
@@ -279,7 +169,57 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "vanarsdelltd_onpremrentals",
+							"referenceName": "southridge_cloudsales",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "log copy output",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "DeltaCopyfromDB",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[log_adf_metrics]",
+							"storedProcedureParameters": {
+								"adf_activity": {
+									"value": {
+										"value": "@string(activity('DeltaCopyfromDB').output)",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"adf_pipeline": {
+									"value": {
+										"value": "@string(pipeline())",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"adf_trigger": {
+									"value": {
+										"value": "@string(trigger())",
+										"type": "Expression"
+									},
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "southridge_cloudsales",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -287,7 +227,7 @@
 				"parameters": {
 					"Data_Source_Table_Name": {
 						"type": "String",
-						"defaultValue": "dbo.transactions"
+						"defaultValue": "dbo.orders"
 					},
 					"Data_Source_WaterMarkColumn": {
 						"type": "String",
@@ -299,11 +239,11 @@
 					},
 					"Data_Destination_Directory": {
 						"type": "String",
-						"defaultValue": "vanarsdelltd/onpremrentals/dbo"
+						"defaultValue": "southridge/cloudsales/dbo/"
 					},
 					"Control_Table_Table_Name": {
 						"type": "String",
-						"defaultValue": "control_table_transactions"
+						"defaultValue": "control_table_orders"
 					},
 					"Control_Table_Column_Name": {
 						"type": "String",

@@ -180,15 +180,24 @@
 					"storedProcedureName": "[dbo].[log_adf_metrics]",
 					"storedProcedureParameters": {
 						"adf_activity": {
-							"value": "@string(activity('DeltaCopyfromDB').output)",
+							"value": {
+								"value": "@string(activity('DeltaCopyfromDB'))",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"adf_pipeline": {
-							"value": "@string(pipeline())",
+							"value": {
+								"value": "@string(pipeline())",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"adf_trigger": {
-							"value": "@string(trigger())",
+							"value": {
+								"value": "@string(trigger())",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}

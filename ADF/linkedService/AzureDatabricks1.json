@@ -1,0 +1,13 @@
+{
+	"name": "AzureDatabricks1",
+	"properties": {
+		"type": "HttpServer",
+		"annotations": [],
+		"typeProperties": {
+			"url": "https://s3.amazonaws.com/nyc-tlc/trip+data/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}
